@@ -1,0 +1,42 @@
+[0.024s] Invoking command in '/home/laptop-makarego/mower/build/mower_isaac_bridge': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ /usr/bin/cmake /home/laptop-makarego/mower/mower_isaac_bridge -DCMAKE_INSTALL_PREFIX=/home/laptop-makarego/mower/install/mower_isaac_bridge
+[0.143s] -- The C compiler identification is GNU 11.4.0
+[0.257s] -- The CXX compiler identification is GNU 11.4.0
+[0.270s] -- Detecting C compiler ABI info
+[0.394s] -- Detecting C compiler ABI info - done
+[0.404s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.404s] -- Detecting C compile features
+[0.405s] -- Detecting C compile features - done
+[0.409s] -- Detecting CXX compiler ABI info
+[0.533s] -- Detecting CXX compiler ABI info - done
+[0.548s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.549s] -- Detecting CXX compile features
+[0.549s] -- Detecting CXX compile features - done
+[0.555s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.787s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.960s] -- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.080s] -- Added test 'lint_cmake' to check CMake code style
+[1.082s] -- Added test 'xmllint' to check XML markup files
+[1.085s] -- Configuring done
+[1.089s] -- Generating done
+[1.091s] -- Build files have been written to: /home/laptop-makarego/mower/build/mower_isaac_bridge
+[1.110s] Invoked command in '/home/laptop-makarego/mower/build/mower_isaac_bridge' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ /usr/bin/cmake /home/laptop-makarego/mower/mower_isaac_bridge -DCMAKE_INSTALL_PREFIX=/home/laptop-makarego/mower/install/mower_isaac_bridge
+[1.112s] Invoking command in '/home/laptop-makarego/mower/build/mower_isaac_bridge': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ /usr/bin/cmake --build /home/laptop-makarego/mower/build/mower_isaac_bridge -- -j12 -l12
+[1.179s] Invoked command in '/home/laptop-makarego/mower/build/mower_isaac_bridge' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ /usr/bin/cmake --build /home/laptop-makarego/mower/build/mower_isaac_bridge -- -j12 -l12
+[1.181s] Invoking command in '/home/laptop-makarego/mower/build/mower_isaac_bridge': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ /usr/bin/cmake --install /home/laptop-makarego/mower/build/mower_isaac_bridge
+[1.197s] -- Install configuration: ""
+[1.197s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/ament_index/resource_index/package_run_dependencies/mower_isaac_bridge
+[1.198s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/ament_index/resource_index/parent_prefix_path/mower_isaac_bridge
+[1.198s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/environment/ament_prefix_path.sh
+[1.198s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/environment/ament_prefix_path.dsv
+[1.198s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/environment/path.sh
+[1.198s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/environment/path.dsv
+[1.198s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/local_setup.bash
+[1.198s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/local_setup.sh
+[1.199s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/local_setup.zsh
+[1.199s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/local_setup.dsv
+[1.199s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/package.dsv
+[1.199s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/ament_index/resource_index/packages/mower_isaac_bridge
+[1.199s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/cmake/mower_isaac_bridgeConfig.cmake
+[1.199s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/cmake/mower_isaac_bridgeConfig-version.cmake
+[1.199s] -- Installing: /home/laptop-makarego/mower/install/mower_isaac_bridge/share/mower_isaac_bridge/package.xml
+[1.282s] Invoked command in '/home/laptop-makarego/mower/build/mower_isaac_bridge' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble PS1=\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ /usr/bin/cmake --install /home/laptop-makarego/mower/build/mower_isaac_bridge

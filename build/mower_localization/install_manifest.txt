@@ -1,0 +1,15 @@
+/home/laptop-makarego/mower/install/mower_localization/share/ament_index/resource_index/package_run_dependencies/mower_localization
+/home/laptop-makarego/mower/install/mower_localization/share/ament_index/resource_index/parent_prefix_path/mower_localization
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/environment/ament_prefix_path.sh
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/environment/ament_prefix_path.dsv
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/environment/path.sh
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/environment/path.dsv
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/local_setup.bash
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/local_setup.sh
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/local_setup.zsh
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/local_setup.dsv
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/package.dsv
+/home/laptop-makarego/mower/install/mower_localization/share/ament_index/resource_index/packages/mower_localization
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/cmake/mower_localizationConfig.cmake
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/cmake/mower_localizationConfig-version.cmake
+/home/laptop-makarego/mower/install/mower_localization/share/mower_localization/package.xml

@@ -1,0 +1,15 @@
+/home/laptop-makarego/mower/install/mower_bringup/share/ament_index/resource_index/package_run_dependencies/mower_bringup
+/home/laptop-makarego/mower/install/mower_bringup/share/ament_index/resource_index/parent_prefix_path/mower_bringup
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/environment/ament_prefix_path.sh
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/environment/ament_prefix_path.dsv
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/environment/path.sh
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/environment/path.dsv
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/local_setup.bash
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/local_setup.sh
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/local_setup.zsh
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/local_setup.dsv
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/package.dsv
+/home/laptop-makarego/mower/install/mower_bringup/share/ament_index/resource_index/packages/mower_bringup
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/cmake/mower_bringupConfig.cmake
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/cmake/mower_bringupConfig-version.cmake
+/home/laptop-makarego/mower/install/mower_bringup/share/mower_bringup/package.xml

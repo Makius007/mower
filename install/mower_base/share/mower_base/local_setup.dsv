@@ -1,0 +1,2 @@
+source;share/mower_base/environment/ament_prefix_path.sh
+source;share/mower_base/environment/path.sh
