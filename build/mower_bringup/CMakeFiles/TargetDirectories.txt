@@ -1,9 +1,0 @@
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/uninstall.dir
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/mower_bringup_uninstall.dir
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/test.dir
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/edit_cache.dir
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/rebuild_cache.dir
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/list_install_components.dir
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/install.dir
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/install/local.dir
-/home/laptop-makarego/mower/build/mower_bringup/CMakeFiles/install/strip.dir

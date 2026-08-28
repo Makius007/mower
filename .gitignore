@@ -1,3 +1,5 @@
-echo "build/" >> .gitignore
-echo "install/" >> .gitignore
-echo "log/" >> .gitignore
+build/
+install/
+log/
+.vscode/
+*.pyc

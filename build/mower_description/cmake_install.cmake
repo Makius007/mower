@@ -1,4 +1,4 @@
-# Install script for directory: /home/laptop-makarego/mower/mower_description
+# Install script for directory: /home/laptop-makarego/mower/src/mower_description
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,6 +40,15 @@ endif()
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
   set(CMAKE_OBJDUMP "/usr/bin/objdump")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mower_description" TYPE DIRECTORY FILES
+    "/home/laptop-makarego/mower/src/mower_description/urdf"
+    "/home/laptop-makarego/mower/src/mower_description/launch"
+    "/home/laptop-makarego/mower/src/mower_description/meshes"
+    "/home/laptop-makarego/mower/src/mower_description/config"
+    )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -98,7 +107,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mower_description" TYPE FILE FILES "/home/laptop-makarego/mower/mower_description/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mower_description" TYPE FILE FILES "/home/laptop-makarego/mower/src/mower_description/package.xml")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

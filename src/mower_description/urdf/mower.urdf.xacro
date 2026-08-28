@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+
+<robot name="mower" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find mower_description)/urdf/realsense_camera.xacro"/>
+
+<xacro:arg name="robot_name" default="mower"/>
+<xacro:arg name="is_ignition" default="true"/>
+
+<!--<gazebo>
+  <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+    <topic>/world/partitioned_world/model/robot/joint_state</topic>
+    <joint_name>left_wheel_joint</joint_name>
+    <joint_name>right_wheel_joint</joint_name>
+    <joint_name>caster_wheel_joint</joint_name>
+  </plugin>
+</gazebo>-->
+
+  <material name="gray">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+
+  <material name="black">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+
+  <material name="dark_grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+
+  <link name="base_link"/>
+
+  <link name="robot_base_link">
+    <inertial>
+      <origin xyz="-0.049604 -0.015683 0.011362" rpy="0 0 0"/>
+      <mass value="5.648" />
+      <inertia 
+  ixx="0.099492" ixy="-0.015838" ixz="-0.000045"
+  iyy="0.157748" iyz="-0.000075" izz="0.078975" />
+  </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0" />
+      <geometry>
+        <mesh filename="package://mower_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="gray">
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0" />
+      <geometry>
+        <mesh filename="package://mower_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="robot_base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="robot_base_link"/>
+    <origin xyz="0.15 0 0.005" rpy="0 0 3.14159265"/>
+</joint>
+
+  <link name="left_wheel">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="0.400"/>
+    <inertia ixx="0.00396" ixy="0.0" ixz="0.0"
+             iyy="0.00396" iyz="0.0" izz="0.00775"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.002166 -0.019012 -0.044154" rpy="-1.5707963 0 0"/>
+    <geometry>
+      <mesh filename="package://mower_description/meshes/kolo_napedowe.stl"
+            scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="black"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="-1.5707963 0 0"/>
+    <geometry>
+      <cylinder radius="0.106" length="0.06"/>
+    </geometry>
+  </collision>
+</link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="robot_base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="-0.122771  0.224558 -0.046668" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="right_wheel">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.400" />
+      <inertia ixx="0.00396" ixy="0.0" ixz="0.0"
+               iyy="0.00396" iyz="0.0" izz="0.00775" />
+    </inertial>
+    <visual>
+      <origin xyz="0.002 -0.002712 0.04081" rpy="1.5707963 0 0" />
+      <geometry>
+        <mesh filename="package://mower_description/meshes/kolo_napedowe.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5707963 0 0" />
+      <geometry>
+        <cylinder radius="0.106" length="0.06"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="robot_base_link"/>
+    <child link="right_wheel"/>
+    <origin xyz="-0.122771 -0.224558 -0.046668" rpy="0.0 0.0 0.0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <joint name="caster_fork_joint" type="continuous">
+    <parent link="robot_base_link"/>
+    <child link="caster_fork_link"/>
+    <origin xyz="0.155 0.0 0.0" rpy="0 0 3.1416"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.02" friction="0.0"/>
+  </joint>
+
+  <link name="caster_fork_link">
+    <inertial>
+      <origin xyz="0.0 0.028923 0.0" rpy="0 0 0"/>
+      <mass value="0.766"/>
+      <inertia 
+        ixx="0.001287" ixy="0.0" ixz="0.0" 
+        iyy="0.000886" iyz="0.0" 
+        izz="0.001470"/>
+    </inertial>
+    <visual>
+  <origin xyz="0 0 0" rpy="1.5708 3.1416 1.5708"/>
+  <geometry>
+    <mesh filename="package://mower_description/meshes/widelec_real3.stl"
+          scale="0.001 0.001 0.001"/>
+  </geometry>
+  <material name="dark_grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+</visual>
+<collision>
+  <origin xyz="0 0 0" rpy="1.5708 3.1416 1.5708"/>
+  <geometry>
+    <mesh filename="package://mower_description/meshes/widelec_real3.stl"
+          scale="0.001 0.001 0.001"/>
+  </geometry>
+</collision>
+  </link>
+
+  <joint name="caster_wheel_joint" type="continuous">
+    <parent link="caster_fork_link"/>
+    <child link="caster_wheel_link"/>
+    <origin xyz="-0.04 0.0 -0.0925 " rpy="0 0 1.5707963"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="caster_wheel_link">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <mass value="0.592"/>
+      <inertia 
+        ixx="0.001080" ixy="0.0" ixz="0.0" 
+        iyy="0.000682" iyz="0.0" 
+        izz="0.000682"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://mower_description/meshes/caster_wheel_real.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="black">
+        <color rgba="0.1 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+    <collision>
+  <origin xyz="0 0 0" rpy="0 1.5707963 0"/>
+  <geometry>
+    <cylinder radius="0.0625" length="0.04"/>
+  </geometry>
+</collision>
+  </link>
+
+  <!--<link name="imu_link">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.02"/>
+      </geometry>
+      <material name="imu_mat">
+        <color rgba="1.0 0.0 0.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.05 0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="0.0000024" ixy="0.0" ixz="0.0" iyy="0.0000024" iyz="0.0" izz="0.0000042"/>
+    </inertial>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="robot_base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
+  </joint>-->
+
+<!--<xacro:rgbd_camera
+    prefix="robot_camera_"
+    camera_name="camera"
+    parent="robot_base_link"
+    mesh_file="package://mower_description/meshes/d435.stl"
+    xyz_offset="0.22 0 0.03"
+    rpy_offset="0 0 0"
+  />-->
+
+<!--<gazebo reference="left_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp>
+  <kd>10.0</kd>
+</gazebo>
+
+<gazebo reference="right_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp>
+  <kd>10.0</kd>
+</gazebo>
+
+<gazebo reference="caster_wheel_link">
+  <mu1>0.0001</mu1>
+  <mu2>0.0001</mu2>
+  <kp>1000000.0</kp>
+  <kd>10.0</kd>
+</gazebo>
+
+<gazebo>
+  <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+    <parameters>$(find project_controller)/config/project_controllers.yaml</parameters>
+  </plugin>
+</gazebo>
+
+<gazebo reference="imu_link">
+<sensor name="imu_sensor" type="imu">
+  <always_on>1</always_on>
+  <update_rate>100</update_rate>
+  <visualize>true</visualize>
+  <topic>imu/data_raw</topic>
+</sensor>
+
+  </gazebo>
+
+<ros2_control name="IgnitionSystem" type="system">
+
+  <hardware>
+    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+  </hardware>
+
+  <joint name="left_wheel_joint">
+    <command_interface name="velocity">
+      <param name="min">-10</param>
+      <param name="max">10</param>
+    </command_interface>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+
+  <joint name="right_wheel_joint">
+    <command_interface name="velocity">
+      <param name="min">-10</param>
+      <param name="max">10</param>
+    </command_interface>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+</ros2_control>-->
+
+</robot>

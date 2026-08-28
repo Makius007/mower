@@ -53,7 +53,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/laptop-makarego/mower/mower_description
+CMAKE_SOURCE_DIR = /home/laptop-makarego/mower/src/mower_description
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/laptop-makarego/mower/build/mower_description
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/laptop-makarego/mower/build/mower_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/laptop-makarego/mower/mower_description /home/laptop-makarego/mower/mower_description /home/laptop-makarego/mower/build/mower_description /home/laptop-makarego/mower/build/mower_description /home/laptop-makarego/mower/build/mower_description/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/laptop-makarego/mower/build/mower_description && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/laptop-makarego/mower/src/mower_description /home/laptop-makarego/mower/src/mower_description /home/laptop-makarego/mower/build/mower_description /home/laptop-makarego/mower/build/mower_description /home/laptop-makarego/mower/build/mower_description/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 
