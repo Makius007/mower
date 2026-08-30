@@ -260,11 +260,11 @@
   <kd>10.0</kd>
 </gazebo>
 
-<!--<gazebo>
+<gazebo>
   <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-    <parameters>$(find project_controller)/config/project_controllers.yaml</parameters>
+    <parameters>$(find mower_controller)/config/project_controllers.yaml</parameters>
   </plugin>
-</gazebo>-->
+</gazebo>
 
 <gazebo reference="imu_link">
 <sensor name="imu_sensor" type="imu">
