@@ -48,6 +48,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/laptop-makarego/mower/src/mower_description/launch"
     "/home/laptop-makarego/mower/src/mower_description/meshes"
     "/home/laptop-makarego/mower/src/mower_description/config"
+    "/home/laptop-makarego/mower/src/mower_description/worlds"
     )
 endif()
 

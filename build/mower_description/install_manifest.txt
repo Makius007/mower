@@ -1,10 +1,14 @@
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/urdf/realsense_camera.xacro
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/urdf/mower.urdf.xacro
+/home/laptop-makarego/mower/install/mower_description/share/mower_description/urdf/lidar.xacro
+/home/laptop-makarego/mower/install/mower_description/share/mower_description/launch/world.launch.py
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/meshes/widelec_real3.stl
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/meshes/d435.stl
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/meshes/kolo_napedowe.stl
+/home/laptop-makarego/mower/install/mower_description/share/mower_description/meshes/rplidar_s2.stl
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/meshes/base_link.stl
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/meshes/caster_wheel_real.stl
+/home/laptop-makarego/mower/install/mower_description/share/mower_description/worlds/lawn.sdf
 /home/laptop-makarego/mower/install/mower_description/share/ament_index/resource_index/package_run_dependencies/mower_description
 /home/laptop-makarego/mower/install/mower_description/share/ament_index/resource_index/parent_prefix_path/mower_description
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/environment/ament_prefix_path.sh

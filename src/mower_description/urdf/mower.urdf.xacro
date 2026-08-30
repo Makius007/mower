@@ -3,18 +3,20 @@
 <robot name="mower" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <xacro:include filename="$(find mower_description)/urdf/realsense_camera.xacro"/>
+<xacro:include filename="$(find mower_description)/urdf/lidar.xacro"/>
 
 <xacro:arg name="robot_name" default="mower"/>
 <xacro:arg name="is_ignition" default="true"/>
 
-<!--<gazebo>
+<gazebo>
   <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
     <topic>/world/partitioned_world/model/robot/joint_state</topic>
     <joint_name>left_wheel_joint</joint_name>
     <joint_name>right_wheel_joint</joint_name>
+    <joint_name>caster_fork_joint</joint_name>
     <joint_name>caster_wheel_joint</joint_name>
   </plugin>
-</gazebo>-->
+</gazebo>
 
   <material name="gray">
     <color rgba="0.3 0.3 0.3 1.0"/>
@@ -192,7 +194,7 @@
 </collision>
   </link>
 
-  <!--<link name="imu_link">
+  <link name="imu_link">
     <visual>
       <geometry>
         <box size="0.05 0.05 0.02"/>
@@ -216,19 +218,28 @@
   <joint name="imu_joint" type="fixed">
     <parent link="robot_base_link"/>
     <child link="imu_link"/>
-    <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
-  </joint>-->
+    <origin xyz="0.155 0.0 0.05" rpy="0 0 0"/>
+  </joint>
 
-<!--<xacro:rgbd_camera
+<xacro:rgb_camera
     prefix="robot_camera_"
     camera_name="camera"
     parent="robot_base_link"
     mesh_file="package://mower_description/meshes/d435.stl"
     xyz_offset="0.22 0 0.03"
     rpy_offset="0 0 0"
-  />-->
+  />
 
-<!--<gazebo reference="left_wheel">
+  <xacro:lidar_sensor
+    prefix="robot_lidar_"
+    parent="robot_base_link"
+    topic_name="/scan"
+    mesh_file="package://mower_description/meshes/rplidar_s2.stl"
+    xyz_offset="0.155 0 0.1"
+    rpy_offset="0 0 0"
+  />
+
+<gazebo reference="left_wheel">
   <mu1>1.0</mu1>
   <mu2>1.0</mu2>
   <kp>1000000.0</kp>
@@ -249,11 +260,11 @@
   <kd>10.0</kd>
 </gazebo>
 
-<gazebo>
+<!--<gazebo>
   <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
     <parameters>$(find project_controller)/config/project_controllers.yaml</parameters>
   </plugin>
-</gazebo>
+</gazebo>-->
 
 <gazebo reference="imu_link">
 <sensor name="imu_sensor" type="imu">
@@ -288,6 +299,6 @@
     <state_interface name="position"/>
     <state_interface name="velocity"/>
   </joint>
-</ros2_control>-->
+</ros2_control>
 
 </robot>

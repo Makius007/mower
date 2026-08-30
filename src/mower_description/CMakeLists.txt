@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 
 install(
-  DIRECTORY urdf launch meshes config
+  DIRECTORY urdf launch meshes config worlds
   DESTINATION share/${PROJECT_NAME}
 )
 

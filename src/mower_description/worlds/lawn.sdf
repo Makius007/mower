@@ -1,0 +1,355 @@
+<sdf version="1.7">
+  <world name="partitioned_world">
+
+  <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <!-- ========== KONFIGURACJA FIZYKI ========== -->
+    <physics name="real_time_physics" type="dart">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+      <gravity>0 0 -9.81</gravity>
+    </physics>
+
+    <!-- ========== PLUGINY GAZEBO SIM / IGNITION ========== -->
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics">
+      <engine>dart</engine>
+    </plugin>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+      <update_rate>1000</update_rate>
+    </plugin>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+
+    <!-- ========== OŚWIETLENIE ========== -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 15 0 -0.5 0</pose>
+      <diffuse>1 1 1 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+
+    <light type="point" name="ceiling_light">
+      <pose>0 0 8 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>40</range>
+        <constant>0.2</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>true</cast_shadows>
+    </light>
+
+    <!-- ========== PODŁOŻE (KSZTAŁT L ZE STREFY ZIELONEJ) ========== -->
+    <model name="ground_plane">
+      <static>true</static>
+      
+      <!-- 1. Lewa strona (10m szeroka x 20m długa) - ZIELONA (ramię litery L) -->
+      <link name="ground_left_green">
+        <pose>-5.0 0.0 0.0 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 20</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 20</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.15 0.5 0.15 1</ambient>
+            <diffuse>0.2 0.65 0.2 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+
+      <!-- 2. Prawa dolna strefa (10m szeroka x 5m długa) - ZIELONA (podstawa litery L) -->
+      <link name="ground_right_bottom_green">
+        <pose>5.0 -7.5 0.0 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 5</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 5</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.15 0.5 0.15 1</ambient>
+            <diffuse>0.2 0.65 0.2 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+      </link>
+
+      <!-- 3. Prawa górna strefa (10m szeroka x 15m długa) - SZARA (pusta przestrzeń poza L) -->
+      <link name="ground_right_top_grey">
+        <pose>5.0 2.5 0.0 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 15</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 15</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.6 0.6 0.6 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========== ŚCIANY OTACZAJĄCE (20m x 20m) ========== -->
+    <!-- Lewa Ściana (X = -10) -->
+    <model name="wall_left">
+      <static>true</static>
+      <link name="link">
+        <pose>-10.0 0.0 1.25 0 0 0</pose>
+        <collision name="collision">
+          <geometry><box><size>0.2 20.0 2.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 20.0 2.5</size></box></geometry>
+          <material>
+            <ambient>0.3 0.15 0.05 1</ambient>
+            <diffuse>0.4 0.2 0.07 1</diffuse>
+            <specular>0.1 0.05 0.02 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Prawa Ściana (X = 10) -->
+    <model name="wall_right">
+      <static>true</static>
+      <link name="link">
+        <pose>10.0 0.0 1.25 0 0 0</pose>
+        <collision name="collision">
+          <geometry><box><size>0.2 20.0 2.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>0.2 20.0 2.5</size></box></geometry>
+          <material>
+            <ambient>0.3 0.15 0.05 1</ambient>
+            <diffuse>0.4 0.2 0.07 1</diffuse>
+            <specular>0.1 0.05 0.02 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Dolna Ściana (Y = -10) -->
+    <model name="wall_bottom">
+      <static>true</static>
+      <link name="link">
+        <pose>0.0 -10.0 1.25 0 0 0</pose>
+        <collision name="collision">
+          <geometry><box><size>20.0 0.2 2.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 0.2 2.5</size></box></geometry>
+          <material>
+            <ambient>0.3 0.15 0.05 1</ambient>
+            <diffuse>0.4 0.2 0.07 1</diffuse>
+            <specular>0.1 0.05 0.02 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Górna Ściana (Y = 10) -->
+    <model name="wall_top">
+      <static>true</static>
+      <link name="link">
+        <pose>0.0 10.0 1.25 0 0 0</pose>
+        <collision name="collision">
+          <geometry><box><size>20.0 0.2 2.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>20.0 0.2 2.5</size></box></geometry>
+          <material>
+            <ambient>0.3 0.15 0.05 1</ambient>
+            <diffuse>0.4 0.2 0.07 1</diffuse>
+            <specular>0.1 0.05 0.02 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========== 1. DOLNA ŚCIANA (Y = -10) ========== -->
+    <model name="apriltag_id0">
+      <static>true</static>
+      <!-- Skierowany w stronę wnętrza (+Y). Odsunięty od ściany na -9.89 -->
+      <pose>0.0 -9.89 0.5 1.5708 0 3.14159</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 0.2 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.2 0.2</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://project_description/apriltags/tag36h11_0-001.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========== 2. GÓRNA ŚCIANA (Y = 10) ========== -->
+    <model name="apriltag_id1">
+      <static>true</static>
+      <!-- Skierowany w stronę wnętrza (-Y). Odsunięty od ściany na 9.89 -->
+      <pose>-9.8 9.89 0.5 1.5708 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 0.2 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.2 0.2</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://project_description/apriltags/tag36h11_0-002.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========== 3. LEWA ŚCIANA (X = -10) ========== -->
+    <model name="apriltag_id2">
+      <static>true</static>
+      <!-- Skierowany w stronę wnętrza (+X). Odsunięty od ściany na -9.89 -->
+      <pose>-9.89 0.0 0.5 1.5708 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 0.2 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.2 0.2</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://project_description/apriltags/tag36h11_0-003.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========== 4. PRAWA ŚCIANA (X = 10) ========== -->
+    <model name="apriltag_id3">
+      <static>true</static>
+      <!-- Skierowany w stronę wnętrza (-X). Odsunięty od ściany na 9.89 -->
+      <pose>9.89 0.0 0.5 1.5708 0 -1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.2 0.2 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.2 0.2</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://project_description/apriltags/tag36h11_0-004.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========== SCENA I GUI ========== -->
+    <scene>
+      <shadows>true</shadows>
+      <ambient>0.8 0.8 0.8 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+    </scene>
+
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>0 -15 15 0 0.7 1.57</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>
