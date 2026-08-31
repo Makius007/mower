@@ -9,6 +9,7 @@
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/meshes/base_link.stl
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/meshes/caster_wheel_real.stl
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/worlds/lawn.sdf
+/home/laptop-makarego/mower/install/mower_description/share/mower_description/rviz/urdf.rviz
 /home/laptop-makarego/mower/install/mower_description/share/ament_index/resource_index/package_run_dependencies/mower_description
 /home/laptop-makarego/mower/install/mower_description/share/ament_index/resource_index/parent_prefix_path/mower_description
 /home/laptop-makarego/mower/install/mower_description/share/mower_description/environment/ament_prefix_path.sh

@@ -148,7 +148,7 @@ def generate_launch_description():
             }  
         ],
         output='screen',
-    )
+    )'''
 
     rviz_node = Node(
         package="rviz2",
@@ -156,8 +156,8 @@ def generate_launch_description():
         name="rviz2",
         parameters=[{"use_sim_time": True}],
         output="screen",
-        arguments=["-d", os.path.join(project_description_dir, "rviz", "display.rviz")],
-    )'''
+        arguments=["-d", os.path.join(project_description_dir, "rviz", "urdf.rviz")],
+    )
 
 
     return LaunchDescription([
@@ -180,4 +180,5 @@ def generate_launch_description():
         gz_joint_states_bridge,
         gz_camera_bridge,
         gz_laser_bridge,
+        rviz_node,
     ])

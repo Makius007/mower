@@ -60,7 +60,7 @@
   <joint name="robot_base_joint" type="fixed">
     <parent link="base_link"/>
     <child link="robot_base_link"/>
-    <origin xyz="0.15 0 0.005" rpy="0 0 3.14159265"/>
+    <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
 </joint>
 
   <link name="left_wheel">
