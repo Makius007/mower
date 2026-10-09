@@ -213,16 +213,16 @@
     <model name="apriltag_id0">
       <static>true</static>
       <!-- Skierowany w stronę wnętrza (+Y). Odsunięty od ściany na -9.89 -->
-      <pose>0.0 -9.89 0.5 1.5708 0 3.14159</pose>
+      <pose>0.0 -9.89 0.3 1.5708 0 3.14159</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.01</size></box></geometry>
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>0.2 0.2</size>
+              <size>0.25 0.25</size>
             </plane>
           </geometry>
           <material>
@@ -231,7 +231,7 @@
             <specular>0 0 0 1</specular>
             <pbr>
               <metal>
-                <albedo_map>model://project_description/apriltags/tag36h11_0-001.png</albedo_map>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-001.png</albedo_map>
                 <roughness>0.9</roughness>
                 <metalness>0.0</metalness>
               </metal>
@@ -245,16 +245,16 @@
     <model name="apriltag_id1">
       <static>true</static>
       <!-- Skierowany w stronę wnętrza (-Y). Odsunięty od ściany na 9.89 -->
-      <pose>-9.8 9.89 0.5 1.5708 0 0</pose>
+      <pose>-9.8 9.89 0.3 1.5708 0 0</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.01</size></box></geometry>
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>0.2 0.2</size>
+              <size>0.25 0.25</size>
             </plane>
           </geometry>
           <material>
@@ -263,7 +263,7 @@
             <specular>0 0 0 1</specular>
             <pbr>
               <metal>
-                <albedo_map>model://project_description/apriltags/tag36h11_0-002.png</albedo_map>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-002.png</albedo_map>
                 <roughness>0.9</roughness>
                 <metalness>0.0</metalness>
               </metal>
@@ -277,16 +277,16 @@
     <model name="apriltag_id2">
       <static>true</static>
       <!-- Skierowany w stronę wnętrza (+X). Odsunięty od ściany na -9.89 -->
-      <pose>-9.89 0.0 0.5 1.5708 0 1.5708</pose>
+      <pose>-9.89 0.0 0.3 1.5708 0 1.5708</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.01</size></box></geometry>
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>0.2 0.2</size>
+              <size>0.25 0.25</size>
             </plane>
           </geometry>
           <material>
@@ -295,7 +295,7 @@
             <specular>0 0 0 1</specular>
             <pbr>
               <metal>
-                <albedo_map>model://project_description/apriltags/tag36h11_0-003.png</albedo_map>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-003.png</albedo_map>
                 <roughness>0.9</roughness>
                 <metalness>0.0</metalness>
               </metal>
@@ -309,16 +309,16 @@
     <model name="apriltag_id3">
       <static>true</static>
       <!-- Skierowany w stronę wnętrza (-X). Odsunięty od ściany na 9.89 -->
-      <pose>9.89 0.0 0.5 1.5708 0 -1.5708</pose>
+      <pose>9.89 0.0 0.3 1.5708 0 -1.5708</pose>
       <link name="link">
         <collision name="collision">
-          <geometry><box><size>0.2 0.2 0.01</size></box></geometry>
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
         </collision>
         <visual name="visual">
           <geometry>
             <plane>
               <normal>0 0 1</normal>
-              <size>0.2 0.2</size>
+              <size>0.25 0.25</size>
             </plane>
           </geometry>
           <material>
@@ -327,7 +327,517 @@
             <specular>0 0 0 1</specular>
             <pbr>
               <metal>
-                <albedo_map>model://project_description/apriltags/tag36h11_0-004.png</albedo_map>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-004.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id4">
+      <static>true</static>
+      <pose>-7.5 -9.89 0.3 1.5708 0 3.14159</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-005.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id5">
+      <static>true</static>
+      <pose>-5.0 -9.89 0.3 1.5708 0 3.14159</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-006.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id6">
+      <static>true</static>
+      <pose>-2.5 -9.89 0.3 1.5708 0 3.14159</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-007.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id7">
+      <static>true</static>
+      <pose>2.5 -9.89 0.3 1.5708 0 3.14159</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-008.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id8">
+      <static>true</static>
+      <pose>5.0 -9.89 0.3 1.5708 0 3.14159</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-009.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id9">
+      <static>true</static>
+      <pose>7.5 -9.89 0.3 1.5708 0 3.14159</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-010.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id10">
+      <static>true</static>
+      <pose>-7.5 9.89 0.3 1.5708 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-011.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id11">
+      <static>true</static>
+      <pose>-5.0 9.89 0.3 1.5708 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-012.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id12">
+      <static>true</static>
+      <pose>-2.5 9.89 0.3 1.5708 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-013.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id13">
+      <static>true</static>
+      <pose>-9.89 -7.50 0.3 1.5708 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-014.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id14">
+      <static>true</static>
+      <pose>-9.89 -5.0 0.3 1.5708 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-015.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id15">
+      <static>true</static>
+      <pose>-9.89 -2.50 0.3 1.5708 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-016.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id16">
+      <static>true</static>
+      <pose>-9.89 2.50 0.3 1.5708 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-017.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id17">
+      <static>true</static>
+      <pose>-9.89 5.0 0.3 1.5708 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-018.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id18">
+      <static>true</static>
+      <pose>-9.89 7.50 0.3 1.5708 0 1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-019.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id19">
+      <static>true</static>
+      <pose>9.89 -8.75 0.3 1.5708 0 -1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-020.png</albedo_map>
+                <roughness>0.9</roughness>
+                <metalness>0.0</metalness>
+              </metal>
+            </pbr>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="apriltag_id20">
+      <static>true</static>
+      <pose>9.89 -6.25 0.3 1.5708 0 -1.5708</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>0.25 0.25 0.01</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>0.25 0.25</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0 0 0 1</specular>
+            <pbr>
+              <metal>
+                <albedo_map>model://mower_description/apriltags/tag36h11_0-021.png</albedo_map>
                 <roughness>0.9</roughness>
                 <metalness>0.0</metalness>
               </metal>

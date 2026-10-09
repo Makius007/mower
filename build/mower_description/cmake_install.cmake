@@ -44,6 +44,7 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/mower_description" TYPE DIRECTORY FILES
+    "/home/laptop-makarego/mower/src/mower_description/apriltags"
     "/home/laptop-makarego/mower/src/mower_description/urdf"
     "/home/laptop-makarego/mower/src/mower_description/launch"
     "/home/laptop-makarego/mower/src/mower_description/meshes"

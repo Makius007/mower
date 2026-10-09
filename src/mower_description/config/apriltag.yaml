@@ -1,0 +1,14 @@
+apriltag_node:
+  ros__parameters:
+    image_transport: "raw"
+    family: "36h11"
+    size: 0.2
+    max_hamming: 0
+    detector:
+      threads: 2
+      decimate: 2.0
+      blur: 0.0
+    tag:
+      ids: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+      frames: ["tag36h11_0", "tag36h11_1", "tag36h11_2", "tag36h11_3", "tag36h11_4", "tag36h11_5", "tag36h11_6", "tag36h11_7", "tag36h11_8", "tag36h11_9", "tag36h11_10", "tag36h11_11", "tag36h11_12", "tag36h11_13", "tag36h11_14", "tag36h11_15", "tag36h11_16", "tag36h11_17", "tag36h11_18", "tag36h11_19", "tag36h11_20"]
+      sizes: [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]

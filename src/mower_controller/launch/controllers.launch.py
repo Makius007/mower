@@ -11,6 +11,9 @@ def generate_launch_description():
         pkg_project_controller, 'config', 'project_controllers.yaml'
     )
 
+    apriltag_params = os.path.join(
+    get_package_share_directory('mower_description'), 'config', 'apriltag.yaml')
+
     joint_state_broadcaster_spawner = Node(
         package='controller_manager',
         executable='spawner',
@@ -21,19 +24,23 @@ def generate_launch_description():
         ],
     )
 
-    diff_drive_spawner = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=[
-            'diff_drive_controller',
-            '--param-file',
-            controllers_config,
-            '--ros-args',
-            '-r',
-            '/diff_drive_controller/cmd_vel_unstamped:=/cmd_vel',
-        ],
-    )
+    wheel_velocity_spawner = Node(
+    package='controller_manager',
+    executable='spawner',
+    arguments=[
+        'wheel_velocity_controller',
+        '--param-file',
+        controllers_config,
+    ],
+)
 
+    drive_node = Node(
+        package='mower_controller',
+        executable='drive_node.py',
+        name='drive_node',
+        parameters=[{'use_sim_time': True}],
+        output='screen'
+    )
     mowing_alghoritm = Node(
             package='mower_controller',
             executable='mowing_node.py',
@@ -50,11 +57,31 @@ def generate_launch_description():
             output='screen'
         )
 
+    apriltag_node = Node(
+        package='apriltag_ros',
+        executable='apriltag_node',
+        name='apriltag_node',
+        remappings=[
+            ('image_rect', '/camera/image_raw'),
+            ('camera_info', '/camera/camera_info'),
+        ],
+        parameters=[apriltag_params, {'use_sim_time': True}],
+    )
+
+    tag_feedback_node = Node(
+        package='mower_controller',
+        executable='tag_feedback_node.py',
+        parameters=[{'use_sim_time': True}],
+    )
+
     return LaunchDescription(
         [
             joint_state_broadcaster_spawner,
-            diff_drive_spawner,
-            grass_detector_node,
-            mowing_alghoritm
+            wheel_velocity_spawner,
+            drive_node,
+            #grass_detector_node,
+            #mowing_alghoritm,
+            apriltag_node,
+            tag_feedback_node
         ]
     )

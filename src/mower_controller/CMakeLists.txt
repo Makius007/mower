@@ -15,7 +15,7 @@ install(
 )
 
 install(
-  PROGRAMS scripts/grass_detector.py scripts/mowing_node.py
+  PROGRAMS scripts/grass_detector.py scripts/mowing_node.py scripts/drive_node.py scripts/tag_feedback_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
