@@ -10,8 +10,13 @@ find_package(ament_cmake REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 
 install(
-  DIRECTORY config launch
+  DIRECTORY config launch scripts
   DESTINATION share/${PROJECT_NAME}
+)
+
+install(
+  PROGRAMS scripts/grass_detector.py scripts/mowing_node.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)

@@ -54,7 +54,7 @@ Twist, '/diff_drive_controller/cmd_vel_unstamped', 10
 
         if dist_at_angle is not None and dist_at_angle<= 0.3:
             self.get_logger().warn('STOP! PRZESZKODA ZA BLISKO')
-            self.publish_cmd_vel(0.0, 0.0)
+
 
     
 

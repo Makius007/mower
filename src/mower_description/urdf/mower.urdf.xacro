@@ -227,7 +227,7 @@
     parent="robot_base_link"
     mesh_file="package://mower_description/meshes/d435.stl"
     xyz_offset="0.22 0 0.03"
-    rpy_offset="0 0 0"
+    rpy_offset="0 0.5 0"
   />
 
   <xacro:lidar_sensor
@@ -272,6 +272,50 @@
   <update_rate>100</update_rate>
   <visualize>true</visualize>
   <topic>imu/data_raw</topic>
+  <gz_frame_id>imu_link</gz_frame_id>
+
+<imu>
+      <angular_velocity>
+        <x>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.0001</stddev>
+          </noise>
+        </x>
+        <y>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.0001</stddev>
+          </noise>
+        </y>
+        <z>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.0001</stddev>
+          </noise>
+        </z>
+      </angular_velocity>
+      <linear_acceleration>
+        <x>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.0001</stddev>
+          </noise>
+        </x>
+        <y>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </y>
+        <z>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>0.0001</stddev>
+          </noise>
+        </z>
+      </linear_acceleration>
+    </imu>
 </sensor>
 
   </gazebo>

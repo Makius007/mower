@@ -34,17 +34,27 @@ def generate_launch_description():
         ],
     )
 
-    '''mowing_alghoritm = Node(
+    mowing_alghoritm = Node(
             package='mower_controller',
-            executable='mowing_alghoritm_node.py',
+            executable='mowing_node.py',
             name='mowing_alghoritm_node',
             parameters=[{'use_sim_time': True}],
             output='screen'
-        )'''
+        )
+
+    grass_detector_node = Node(
+            package='mower_controller',
+            executable='grass_detector.py',
+            name='grass_detector',
+            parameters=[{'use_sim_time': True}],
+            output='screen'
+        )
 
     return LaunchDescription(
         [
             joint_state_broadcaster_spawner,
             diff_drive_spawner,
+            grass_detector_node,
+            mowing_alghoritm
         ]
     )
