@@ -10,6 +10,7 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
 
 
+
 class MowingAlgorithm(Node):
 
     STATE_FORWARD = "FORWARD"
