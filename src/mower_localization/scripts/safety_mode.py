@@ -18,7 +18,7 @@ LaserScan, '/scan', self.lidar_callback, 10
         )
 
         self.stop_pub = self.create_publisher(
-Twist, '/diff_drive_controller/cmd_vel_unstamped', 10
+Twist, '/cmd_vel', 10
         )
 
     def publish_cmd_vel(self, linear_x, angular_z):

@@ -15,15 +15,17 @@ from tf2_ros import TransformBroadcaster
 class DriveNode(Node):
     def __init__(self):
         super().__init__('drive_node')
-        self.declare_parameter('wheel_radius',0.1)
-        self.declare_parameter('wheel_seperation', 0.449)
+        self.declare_parameter('wheel_radius', 0.106)
+        self.declare_parameter('wheel_separation', 0.449)
         self.declare_parameter('left_joint', 'left_wheel_joint')
         self.declare_parameter('right_joint', 'right_wheel_joint')
+        self.declare_parameter('publish_tf', False)
 
         self.wheel_radius = self.get_parameter('wheel_radius').value
-        self.wheel_seperation = self.get_parameter('wheel_seperation').value
+        self.wheel_separation = self.get_parameter('wheel_separation').value
         self.left_joint = self.get_parameter('left_joint').value
         self.right_joint = self.get_parameter('right_joint').value
+        self.publish_tf = self.get_parameter('publish_tf').value
 
         self.x=0.0
         self.y=0.0
@@ -46,7 +48,7 @@ class DriveNode(Node):
         self.joint_state_sub = self.create_subscription(JointState, '/joint_states', self.joint_states_callback, 10)
 
         self.timer = self.create_timer(0.02, self.command_timer_callback)
-        
+
 
     def cmd_vel_callback(self, msg):
         self.last_cmd_time = self.get_clock().now()
@@ -63,8 +65,8 @@ class DriveNode(Node):
             v = self.v
             w = self.w
 
-        wl = (v - w * self.wheel_seperation / 2.0) / self.wheel_radius
-        wp = (v + w * self.wheel_seperation / 2.0) / self.wheel_radius
+        wl = (v - w * self.wheel_separation / 2.0) / self.wheel_radius
+        wp = (v + w * self.wheel_separation / 2.0) / self.wheel_radius
 
         msg = Float64MultiArray()
         msg.data = [wl, wp]
@@ -78,7 +80,7 @@ class DriveNode(Node):
             return
         if not msg.position:
             return
-        
+
         t = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
         pos_l = msg.position[il]
         pos_p = msg.position[ip]
@@ -93,7 +95,7 @@ class DriveNode(Node):
 
         if dt <= 0.0:
             return
-        
+
         dl = pos_l - self.prev_pos_l
         dp = pos_p - self.prev_pos_p
 
@@ -102,7 +104,7 @@ class DriveNode(Node):
         self.prev_pos_p = pos_p
 
         ds = self.wheel_radius*(dp+dl)/2
-        d_theta = self.wheel_radius*(dp-dl)/(self.wheel_seperation)
+        d_theta = self.wheel_radius*(dp-dl)/(self.wheel_separation)
 
         self.x += ds * math.cos(self.theta + d_theta / 2.0)
         self.y += ds * math.sin(self.theta + d_theta / 2.0)
@@ -114,7 +116,7 @@ class DriveNode(Node):
         odom = Odometry()
         odom.header.stamp = msg.header.stamp
         odom.header.frame_id="odom"
-        odom.child_frame_id="base_link" 
+        odom.child_frame_id="base_link"
         odom.pose.pose.position.x=self.x
         odom.pose.pose.position.y=self.y
         odom.pose.pose.position.z=0.0
@@ -122,17 +124,21 @@ class DriveNode(Node):
         odom.pose.pose.orientation.w = math.cos(self.theta / 2.0)
         odom.twist.twist.linear.x = v
         odom.twist.twist.angular.z = w
+        odom.twist.covariance[0] = 0.01
+        odom.twist.covariance[7] = 0.001
+        odom.twist.covariance[35] = 0.03
         self.odom_pub.publish(odom)
 
-        t_msg = TransformStamped()
-        t_msg.header.stamp = msg.header.stamp
-        t_msg.header.frame_id = 'odom'
-        t_msg.child_frame_id = 'base_link'
-        t_msg.transform.translation.x = self.x
-        t_msg.transform.translation.y = self.y
-        t_msg.transform.rotation.z = math.sin(self.theta / 2.0)
-        t_msg.transform.rotation.w = math.cos(self.theta / 2.0)
-        self.tf_broadcaster.sendTransform(t_msg)
+        if self.publish_tf:
+            t_msg = TransformStamped()
+            t_msg.header.stamp = msg.header.stamp
+            t_msg.header.frame_id = 'odom'
+            t_msg.child_frame_id = 'base_link'
+            t_msg.transform.translation.x = self.x
+            t_msg.transform.translation.y = self.y
+            t_msg.transform.rotation.z = math.sin(self.theta / 2.0)
+            t_msg.transform.rotation.w = math.cos(self.theta / 2.0)
+            self.tf_broadcaster.sendTransform(t_msg)
 
 def main():
     rclpy.init()

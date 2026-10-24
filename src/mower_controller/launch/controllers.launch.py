@@ -79,8 +79,8 @@ def generate_launch_description():
             joint_state_broadcaster_spawner,
             wheel_velocity_spawner,
             drive_node,
-            #grass_detector_node,
-            #mowing_alghoritm,
+            grass_detector_node,
+            mowing_alghoritm,
             apriltag_node,
             tag_feedback_node
         ]

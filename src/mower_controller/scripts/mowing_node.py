@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import math
-import cv2
 import numpy as np
 from cv_bridge import CvBridge
 
@@ -10,15 +9,13 @@ from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
 
-from scipy.spatial.transform import Rotation as R
 
 class MowingAlgorithm(Node):
 
-    STATE_FORWARD = "FORWARD"          
-    STATE_TURN_OUT = "TURN_OUT"        
-    STATE_SHIFT_LANE = "SHIFT_LANE"    
+    STATE_FORWARD = "FORWARD"
+    STATE_TURN_OUT = "TURN_OUT"
+    STATE_SHIFT_LANE = "SHIFT_LANE"
     STATE_TURN_IN = "TURN_IN"
-    STATE_STOP = "STOP"
 
     def __init__(self):
         super().__init__('mowing_algorithm')
@@ -31,10 +28,10 @@ class MowingAlgorithm(Node):
         self.current_x = 0.0
         self.current_y = 0.0
         self.current_yaw = 0.0
-        
+
         self.start_x = 0.0
         self.start_y = 0.0
-        
+
         self.target_yaw = 0.0
         self.is_green_ahead = True
         self.first_run = True
@@ -52,24 +49,34 @@ class MowingAlgorithm(Node):
         )
 
         self.odom_sub = self.create_subscription(
-            Odometry, 
-            '/odometry/filtered', 
-            self.odom_callback, 
+            Odometry,
+            '/odometry/filtered',
+            self.odom_callback,
             10
         )
 
         # Publikacja
-        self.vel_pub = self.create_publisher(
-            Twist, 
-            '/diff_drive_controller/cmd_vel_unstamped', 
-            10
-        )
-        
+        self.vel_pub = self.create_publisher(Twist, '/cmd_vel', 10)
+
         # Pętla sterowania 10 Hz
         self.timer = self.create_timer(0.1, self.control_loop)
 
     def normalize_angle(self, angle):
         return math.atan2(math.sin(angle), math.cos(angle))
+
+    def turn_offset(self, angle):
+        return -angle if self.right else angle
+
+    def turn_to(self, target_yaw, cmd):
+        diff = self.normalize_angle(target_yaw - self.current_yaw)
+        error = abs(diff)
+        if error <= 0.03:
+            cmd.angular.z = 0.0
+            return True
+        Kp = 1.2
+        ang_vel = max(0.35, min(1.0, Kp * error))
+        cmd.angular.z = ang_vel if diff > 0 else -ang_vel
+        return False
 
     def mask_callback(self, msg: Image):
         try:
@@ -78,16 +85,16 @@ class MowingAlgorithm(Node):
             self.get_logger().error(f"cv_bridge conversion failed: {exc}")
             return
 
-        height, width = cv_image.shape
+        height, _ = cv_image.shape
         roi_start = int(height * 0.7)
         bottom_region = cv_image[roi_start:height, :]
 
         white_pixels = np.count_nonzero(bottom_region)
         total_pixels = bottom_region.size
         grass_ratio = white_pixels / total_pixels if total_pixels > 0 else 0
-        
+
         grass_threshold = self.get_parameter("grass_threshold").value
-        
+
         # Aktualizacja flagi na podstawie tego, co FAKTYCZNIE jest przed robotem
         self.is_green_ahead = grass_ratio >= grass_threshold
 
@@ -98,21 +105,19 @@ class MowingAlgorithm(Node):
 
         # Pobranie kwaternionu z fuzji i konwersja na Yaw
         q = msg.pose.pose.orientation
-        rot = R.from_quat([q.x, q.y, q.z, q.w])
-        _, _, yaw = rot.as_euler('xyz')
-        
-        self.current_yaw = yaw
+        self.current_yaw = math.atan2(2.0 * (q.w * q.z + q.x * q.y),
+                                      1.0 - 2.0 * (q.y * q.y + q.z * q.z))
 
     def control_loop(self):
         cmd = Twist()
 
         # ---------------------------------------------------------
         # STAN 1: KOSZENIE PROSTO
-        # --------------------------------------------------------- 
+        # ---------------------------------------------------------
         if self.state == self.STATE_FORWARD:
             if self.is_green_ahead:
-                cmd.linear.x = 0.5   
-                
+                cmd.linear.x = 0.5
+
                 if self.first_run:
                     self.target_yaw = self.current_yaw
                     self.first_run = False
@@ -121,47 +126,34 @@ class MowingAlgorithm(Node):
                 # Stabilizacja toru jazdy na wprost (Heading Lock)
                 heading_error = self.normalize_angle(self.target_yaw - self.current_yaw)
                 cmd.angular.z = 0.8 * heading_error
-                
+
             else:
-                cmd.linear.x = 0.0
                 self.get_logger().info("Brak trawy - przerywam koszenie, rozpoczynam nawrót (TURN_OUT).")
                 self.state = self.STATE_TURN_OUT
-                
+
         # ---------------------------------------------------------
         # STAN 2: PIERWSZY OBRÓT O 90 STOPNI
         # ---------------------------------------------------------
         elif self.state == self.STATE_TURN_OUT:
-            turn_offset = -math.pi / 2.0 if self.right else math.pi / 2.0
-            ideal_turn_yaw = self.normalize_angle(self.target_yaw + turn_offset)
-            
-            diff = self.normalize_angle(ideal_turn_yaw - self.current_yaw)
-            error = abs(diff)
-            
-            if error <= 0.03: 
+            turn_yaw = self.normalize_angle(self.target_yaw + self.turn_offset(math.pi / 2.0))
+
+            if self.turn_to(turn_yaw, cmd):
                 self.get_logger().info("Obrót 1 zakończony.")
-                cmd.angular.z = 0.0
                 # Zapisanie pozycji startowej do przejazdu na nowy pas
                 self.start_x = self.current_x
                 self.start_y = self.current_y
                 self.state = self.STATE_SHIFT_LANE
-            else:
-                Kp = 1.2
-                ang_vel = max(0.35, min(1.0, Kp * error))
-                cmd.angular.z = ang_vel if diff > 0 else -ang_vel
 
         # ---------------------------------------------------------
         # STAN 3: PRZEJAZD NA NOWY PAS
         # ---------------------------------------------------------
         elif self.state == self.STATE_SHIFT_LANE:
             shift = math.hypot(self.current_x - self.start_x, self.current_y - self.start_y)
-            
-            turn_offset = -math.pi / 2.0 if self.right else math.pi / 2.0
-            shift_yaw = self.normalize_angle(self.target_yaw + turn_offset)
-            
+            shift_yaw = self.normalize_angle(self.target_yaw + self.turn_offset(math.pi / 2.0))
             target_shift = self.get_parameter("mower_width").value / 2.0
 
             if shift < target_shift:
-                cmd.linear.x = 0.35   
+                cmd.linear.x = 0.35
                 # Jazda po prostej linii w trakcie przesunięcia
                 heading_error = self.normalize_angle(shift_yaw - self.current_yaw)
                 cmd.angular.z = 0.8 * heading_error
@@ -173,34 +165,18 @@ class MowingAlgorithm(Node):
         # STAN 4: DRUGI OBRÓT O 90 STOPNI (ŁĄCZNIE 180)
         # ---------------------------------------------------------
         elif self.state == self.STATE_TURN_IN:
-            turn_offset = -math.pi if self.right else math.pi
-            ideal_turn_yaw = self.normalize_angle(self.target_yaw + turn_offset)
-            
-            diff = self.normalize_angle(ideal_turn_yaw - self.current_yaw)
-            error = abs(diff)
-            
-            if error <= 0.03:
+            turn_yaw = self.normalize_angle(self.target_yaw + self.turn_offset(math.pi))
+
+            if self.turn_to(turn_yaw, cmd):
                 self.get_logger().info("Nawrót zakończony, powrót do koszenia przed siebie.")
-                cmd.angular.z = 0.0
-                
                 # Uaktualnienie globalnego wektora i zmiana kierunku na następny nawrót
-                self.target_yaw = ideal_turn_yaw 
+                self.target_yaw = turn_yaw
                 self.right = not self.right
                 self.state = self.STATE_FORWARD
-            else:
-                Kp = 1.2
-                ang_vel = max(0.35, min(1.0, Kp * error))
-                cmd.angular.z = ang_vel if diff > 0 else -ang_vel
-
-        # ---------------------------------------------------------
-        # STAN 5: ZATRZYMANIE BAZY
-        # ---------------------------------------------------------
-        elif self.state == self.STATE_STOP:
-            cmd.linear.x = 0.0
-            cmd.angular.z = 0.0
 
         self.vel_pub.publish(cmd)
-        
+
+
 def main(args=None):
     rclpy.init(args=args)
     node = MowingAlgorithm()
@@ -211,6 +187,7 @@ def main(args=None):
     finally:
         node.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()
