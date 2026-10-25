@@ -37,14 +37,14 @@ The robot model comes from my own CAD design and runs in Gazebo Sim with LiDAR, 
 
 ## Requirements
 
-- Ubuntu 22.04, ROS 2 Humble, Gazebo Sim  <!-- check your exact versions -->
+- Ubuntu 22.04, ROS 2 Humble, Gazebo Fortress (6.x)
 - `ros_gz`, `gz_ros2_control`, `ros2_controllers`, `robot_localization`, `apriltag_ros`, `slam_toolbox`, `cv_bridge`
 - Python: `opencv-python`, `numpy`, `scipy`
 
 ## Build
 
 ```bash
-git clone https://github.com/<login>/<repo>.git ~/mower
+git clone https://github.com/Makius007/mower.git ~/mower
 cd ~/mower
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install

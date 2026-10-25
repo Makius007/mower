@@ -3,16 +3,15 @@
 <package format="3">
   <name>mower_controller</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="makary.kaczmarek@gmail.com">laptop-makarego</maintainer>
-  <license>TODO: License declaration</license>
+     <description>controllers and algorithm for mowing</description>
+   <maintainer email="makary.kaczmarek@gmail.com">Makary Kaczmarek</maintainer>
+   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   
   <depend>rclcpp</depend>
   <depend>controller_manager</depend>
-  <depend>diff_drive_controller</depend>
   <depend>joint_state_broadcaster</depend>
   <depend>hardware_interface</depend>
   <depend>mower_interfaces</depend>

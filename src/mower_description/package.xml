@@ -3,9 +3,9 @@
 <package format="3">
   <name>mower_description</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="makary.kaczmarek@gmail.com">laptop-makarego</maintainer>
-  <license>TODO: License declaration</license>
+  <description>Urdf file and gazebo world</description>
+   <maintainer email="makary.kaczmarek@gmail.com">Makary Kaczmarek</maintainer>
+   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -17,8 +17,7 @@
   <exec_depend>ros2launch</exec_depend>
   <exec_depend>ros_gz_sim</exec_depend>
   <exec_depend>ros_gz_bridge</exec_depend>
-  <exec_depend condition="$ROS_DISTRO >= iron">gz_ros2_control</exec_depend>
-  <exec_depend condition="$ROS_DISTRO == humble">ign_ros2_control</exec_depend>
+  <exec_depend>gz_ros2_control</exec_depend>
   <exec_depend>slam_toolbox</exec_depend>
   <exec_depend>nav2_map_server</exec_depend>
   <exec_depend>nav2_amcl</exec_depend>

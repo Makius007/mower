@@ -3,9 +3,9 @@
 <package format="3">
   <name>mower_interfaces</name>
   <version>0.0.0</version>
-  <description>Wiadomosci dla robota koszacego</description>
-  <maintainer email="makary.kaczmarek@gmail.com">laptop-makarego</maintainer>
-  <license>Apache-2.0</license>
+  <description>message type for mower</description>
+  <maintainer email="makary.kaczmarek@gmail.com">Makary Kaczmarek</maintainer>
+  <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>rosidl_default_generators</buildtool_depend>

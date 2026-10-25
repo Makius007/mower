@@ -28,5 +28,5 @@ def generate_launch_description():
 
     return LaunchDescription([
         ekf_node,
-        safety_node
+        #safety_node
     ])

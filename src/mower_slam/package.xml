@@ -3,9 +3,9 @@
 <package format="3">
   <name>mower_slam</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="makary.kaczmarek@gmail.com">laptop-makarego</maintainer>
-  <license>TODO: License declaration</license>
+     <description>Potential SLAM for future</description>
+   <maintainer email="makary.kaczmarek@gmail.com">Makary Kaczmarek</maintainer>
+   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

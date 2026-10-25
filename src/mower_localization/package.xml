@@ -3,13 +3,13 @@
 <package format="3">
   <name>mower_localization</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="laptop-makarego@todo.todo">laptop-makarego</maintainer>
-  <license>TODO: License declaration</license>
+     <description>EKF localization with IMU</description>
+   <maintainer email="makary.kaczmarek@gmail.com">Makary Kaczmarek</maintainer>
+   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>rclcpy</depend>
+  <depend>rclpy</depend>
   <depend>geometry_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>apriltag_msgs</depend>
